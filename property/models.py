@@ -58,6 +58,12 @@ class Flat(models.Model):
         blank=True,
         db_index=True)
 
+    liked = models.ManyToManyField(
+        User,
+        blank=True,
+        verbose_name='Кто лайкнул'
+    )
+
     def __str__(self):
         return f'{self.town}, {self.address} ({self.price}р.)'
 

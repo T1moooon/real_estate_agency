@@ -8,7 +8,7 @@ class Flat(models.Model):
     owner = models.CharField('ФИО владельца', max_length=200)
     owners_phonenumber = models.CharField('Номер владельца', max_length=20)
     owner_pure_phone = PhoneNumberField(
-        'Номер владельца',
+        'Нормализованный номер владельца',
         region='RU',
         blank=True,
         null=True
@@ -93,7 +93,7 @@ class Owner(models.Model):
     full_name = models.CharField('ФИО владельца', max_length=50)
     owners_phonenumber = models.CharField('Номер владельца', max_length=20)
     owner_pure_phone = PhoneNumberField(
-        'Номер владельца',
+        'Нормализованный номер владельца',
         region='RU',
         blank=True,
         null=True

@@ -79,6 +79,9 @@ class Complaint(models.Model):
     )
     text = models.TextField('Текст жалобы')
 
+    def __str__(self):
+        return self.flat
+
 
 class Owner(models.Model):
     full_name = models.CharField('ФИО владельца', max_length=50)

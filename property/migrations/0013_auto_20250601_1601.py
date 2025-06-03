@@ -7,7 +7,7 @@ def owners_and_flats(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
     Owner = apps.get_model('property', 'Owner')
 
-    for flat in Flat.objects.all():
+    for flat in Flat.objects.iterator(chunk_size=200):
         owners = Owner.objects.filter(full_name=flat.owner)
         if owners:
             for owner in owners:

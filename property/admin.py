@@ -32,7 +32,7 @@ admin.site.register(Flat, FlatAdmin)
 
 
 class ComplaintAdmin(admin.ModelAdmin):
-    raw_id_fields = ['user', 'flat']
+    raw_id_fields = ['complainant', 'flat']
 
 
 admin.site.register(Complaint, ComplaintAdmin)

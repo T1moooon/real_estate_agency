@@ -7,11 +7,7 @@ from .models import (
 )
 
 
-class FlatInline(admin.TabularInline):
-    model = Flat.owners.through
-    raw_id_fields = ['owner']
-
-
+@admin.register(Flat)
 class FlatAdmin(admin.ModelAdmin):
     search_fields = ['town', 'address', 'owner']
     readonly_fields = ['created_at']
@@ -25,22 +21,20 @@ class FlatAdmin(admin.ModelAdmin):
     list_editable = ['new_building']
     list_filter = ['new_building', 'rooms_number', 'has_balcony']
     raw_id_fields = ['liked']
+
+    class FlatInline(admin.TabularInline):
+        model = Flat.owners.through
+        raw_id_fields = ['owner']
+
     inlines = [FlatInline]
 
 
-admin.site.register(Flat, FlatAdmin)
-
-
+@admin.register(Complaint)
 class ComplaintAdmin(admin.ModelAdmin):
     raw_id_fields = ['complainant', 'flat']
 
 
-admin.site.register(Complaint, ComplaintAdmin)
-
-
+@admin.register(Owner)
 class OwnerAdmin(admin.ModelAdmin):
     raw_id_fields = ['flats']
     list_display = ['phone', 'phone_normalized']
-
-
-admin.site.register(Owner, OwnerAdmin)

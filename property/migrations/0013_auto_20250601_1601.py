@@ -8,7 +8,7 @@ def owners_and_flats(apps, schema_editor):
     Owner = apps.get_model('property', 'Owner')
 
     for flat in Flat.objects.iterator(chunk_size=200):
-        owners = Owner.objects.filter(phone_normalized=flat.phone_normalized)
+        owners = Owner.objects.filter(owner_pure_phone=flat.owner_pure_phone)
         if owners:
             for owner in owners:
                 owner.owner_flats.add(flat)

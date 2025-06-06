@@ -69,18 +69,18 @@ class Complaint(models.Model):
         User,
         on_delete=models.CASCADE,
         verbose_name='Кто жаловался',
-        related_name='complainant'
+        related_name='complaints'
     )
     flat = models.ForeignKey(
         Flat,
         on_delete=models.CASCADE,
         verbose_name='Квартира, на которую пожаловались',
-        related_name='flat_complaints'
+        related_name='complaints'
     )
     text = models.TextField('Текст жалобы')
 
     def __str__(self):
-        return self.flat
+        return f'Жалоба от {self.complainant}'
 
 
 class Owner(models.Model):
